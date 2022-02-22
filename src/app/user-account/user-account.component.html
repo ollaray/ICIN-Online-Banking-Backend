@@ -1,0 +1,45 @@
+<!-- <app-navbar></app-navbar> -->
+<div class="container">
+  <table class="table table-responsive  table-striped" id="userTable">
+    <caption>User Accounts</caption>
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Primary Account</th>
+        <th scope="col">Savings Account</th>
+        <th scope="col">Enabled</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userList">
+        <td>{{user.username}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>@{{user.phone}}</td>
+        <td><a (click)="onSelectPrimary(user.username)" style="cursor: pointer;"></a>
+            {{user.primaryAccount.accountBalance}}
+        </td>
+        <td><a (click)="onSelectSavings(user.username)" style="cursor: pointer;"></a>
+            {{user.savingsAccount.accountBalance}}
+        </td>
+        <td>
+            {{user.enabled}}
+        </td>
+        <td [hidden]="user.enabled">
+            <a (click)="enableUser(user.username)" role="button" class="btn btn-primary" style="cursor: pointer;">Enable</a>
+        </td>
+        <td [hidden]="!user.enabled">
+            <a (click)="disableUser(user.username)" style="cursor: pointer;"  role="button" class="btn btn-primary">Disable</a>
+        </td>
+      </tr>
+    
+    </tbody>
+  </table>
+
+</div>
